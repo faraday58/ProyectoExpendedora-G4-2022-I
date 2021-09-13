@@ -2,35 +2,59 @@
 using System.Threading;
 namespace ProyectoExpendedora_G4_2022_I
 {
-    class Expendedora
+   abstract class Expendedora
     {
         #region Atributos (Campos)
         private string marca;
         private ushort cantProductos;
         private float precio;
         private byte temperatura;
+
         #endregion
+
+        #region Propiedades
+        public byte Temperatura { 
+            get => temperatura;
+            set { 
+                if( value < 14 || value > 20   )
+                {
+                    temperatura = 14;
+                }
+                else
+                {
+                    temperatura = value;
+                }
+                
+            }
+        }
+
+        public string Marca {  get => marca; set => marca = value; }
+        public ushort CantProductos { 
+            get => cantProductos;
+            set
+            {
+                if (value < 400 || value > 700)
+                {
+                    cantProductos = 400;
+                }
+                else
+                {
+                    cantProductos = value;
+                }
+
+            }
+        }
+        public float Precio { get => precio; set => precio = value; }
+        #endregion
+
 
         public Expendedora()
         {
-            marca = "AMS";
-            cantProductos = 430;
-            precio = 15;
-            temperatura = 14;
-            Saludar();
-            TiempoDespliegue();
-            Console.WriteLine("Marca: {0}", marca);
-            TiempoDespliegue();
-            Console.WriteLine("Temperatura: {0} [°C] ", temperatura);
-            TiempoDespliegue();
-            string codigo=MostrarCodigoProducto();
-            TiempoDespliegue();
-            MostrarPrecio(codigo);
         }
 
         public Expendedora(string marca)
         {
-            this.marca = marca;
+            this.Marca = marca;
             Saludar();
             TiempoDespliegue();
             Console.WriteLine("Marca: {0}", marca);
@@ -39,17 +63,17 @@ namespace ProyectoExpendedora_G4_2022_I
 
         public Expendedora(ushort cantProductos)
         {
-            marca = "AMS";
-            this.cantProductos = cantProductos;
+            Marca = "AMS";
+            this.CantProductos = cantProductos;
             Saludar();
             TiempoDespliegue();
-            Console.WriteLine("Marca: {0}  \n Cantidad de Productos: {1}", marca, this.cantProductos);
+            Console.WriteLine("Marca: {0}  \n Cantidad de Productos: {1}", Marca, this.CantProductos);
 
         }
         public Expendedora(string marca,ushort cantProductos)
         {
-            this.marca = marca;
-            this.cantProductos= cantProductos;
+            this.Marca = marca;
+            this.CantProductos= cantProductos;
 
 
         }
@@ -69,13 +93,13 @@ namespace ProyectoExpendedora_G4_2022_I
             switch(codigo)
             {
                 case "1A":
-                    Console.WriteLine("Precio: ${0}", precio);
+                    Console.WriteLine("Precio: ${0}", Precio);
                     break;
                 case "2A":
-                    Console.WriteLine("Precio: ${0}", precio-1);
+                    Console.WriteLine("Precio: ${0}", Precio-1);
                     break;
                 case "3B":
-                    Console.WriteLine("Precio: ${0}", precio+2);
+                    Console.WriteLine("Precio: ${0}", Precio+2);
                     break;
                 default:
                     Console.WriteLine(" Ingrese un código válido ");
@@ -85,12 +109,15 @@ namespace ProyectoExpendedora_G4_2022_I
         }
 
         #region Métodos
-        public void cambiarTemperatura()
+        public void ElevarTemperatura()
         {
-            temperatura--; //temperatura=temperatura - 1
-            TiempoDespliegue();
-            Console.WriteLine("Temperatura: {0} [°C] ", temperatura);
+            Temperatura++; //temperatura=temperatura + 1           
 
+        }
+
+        public void MostrarTemperatura()
+        {
+            Console.WriteLine("Temperatura: {0} [°C]",Temperatura);
         }
 
         public void Saludar()
