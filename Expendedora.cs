@@ -8,12 +8,12 @@ namespace ProyectoExpendedora_G4_2022_I
         private string marca;
         private ushort cantProductos;
         private float precio;
-        private byte temperatura;
+        internal byte temperatura;
 
         #endregion
 
         #region Propiedades
-        public byte Temperatura { 
+        public virtual byte Temperatura { 
             get => temperatura;
             set { 
                 if( value < 14 || value > 20   )
@@ -78,7 +78,7 @@ namespace ProyectoExpendedora_G4_2022_I
 
         }
 
-        public string MostrarCodigoProducto()
+        public virtual string MostrarCodigoProducto()
         {
             //Variable local
             string codigo;
