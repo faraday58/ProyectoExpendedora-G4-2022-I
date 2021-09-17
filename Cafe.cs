@@ -37,6 +37,9 @@ namespace ProyectoExpendedora_G4_2022_I
           
         }
 
+        
+
+
         public override string MostrarCodigoProducto()
         {
             string codigo;
